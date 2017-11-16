@@ -32,6 +32,27 @@ module.exports = function(app, db) {
 		});
 	});
 
+	app.get('/checklist', (req, res) => {
+		db.collection('checklist').find({}, (err, item) => {
+			if (err) {
+				res.send({'error':'An error has occurred'});
+			} else {
+				res.send(item);
+			}
+		});
+	});
+
+	app.post('/checklist', (req, res) => {
+		const check_item = { item_name: req.body.item_name, checked: req.body.check };
+		db.collection('checklist').insert(check_item, (err, item) => {
+			if (err) {
+				res.send({'error':'An error has occurred'});
+			} else {
+				res.send(result.ops[0]);
+			}
+		});
+	});
+
 	/*
 	DELETE - Deletes a plate from the database if found
 	
