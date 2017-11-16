@@ -33,7 +33,7 @@ module.exports = function(app, db) {
 	});
 
 	app.get('/checklist', (req, res) => {
-		db.collection('checklist').find({}, (err, item) => {
+		db.collection('checklist').find({}).toArray(function(err, item) {
 			if (err) {
 				res.send({'error':'An error has occurred'});
 			} else {
