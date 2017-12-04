@@ -43,7 +43,7 @@ module.exports = function(app, db) {
 	});
 
 	app.post('/checklist', (req, res) => {
-		const check_item = { item_name: req.body.item_name, checked: req.body.check };
+		const check_item = { item_name: req.body.item_name };
 		db.collection('checklist').insert(check_item, (err, item) => {
 			if (err) {
 				res.send({'error':'An error has occurred'});
