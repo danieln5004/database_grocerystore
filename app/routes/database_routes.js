@@ -53,6 +53,16 @@ module.exports = function(app, db) {
 		});
 	});
 
+	app.delete('/checklist/:item_name', (req, res) => {
+		db.collection('checklist').remove({item_name: req.params.item_name}, function(err, db))
+			if (err) {
+				res.send({'error':'An error has occurred'});
+			} else {
+				res.send('Item ' + req.params.item_name + ' deleted!');
+			}
+		});
+	});
+
 	/*
 	DELETE - Deletes a plate from the database if found
 	
